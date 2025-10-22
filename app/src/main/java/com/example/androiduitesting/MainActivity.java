@@ -3,6 +3,7 @@ package com.example.androiduitesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,12 +71,11 @@ public class MainActivity extends AppCompatActivity {
         cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ShowActivity showActivity = ShowActivity.newInstance(cityAdapter.getItem(i));
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(android.R.id.content,showActivity) // Replace existing fragment
-                        .addToBackStack(null) // Add to back stack so back button works
-                        .commit();
+                Bundle args = new Bundle();
+                args.putSerializable("City", dataList.get(i));
+                Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+                intent.putExtras(args);
+                startActivity(intent);
 
             }
         });
