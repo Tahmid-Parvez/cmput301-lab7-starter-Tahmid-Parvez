@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ShowActivity showActivity = ShowActivity.newInstance(cityAdapter.getItem(i));
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(android.R.id.content,showActivity) // Replace existing fragment
+                        .addToBackStack(null) // Add to back stack so back button works
+                        .commit();
 
             }
         });
