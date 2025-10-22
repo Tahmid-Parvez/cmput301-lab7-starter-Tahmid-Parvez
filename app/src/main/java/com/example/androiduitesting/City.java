@@ -1,6 +1,8 @@
 package com.example.androiduitesting;
 
-public class City {
+import java.io.Serializable;
+
+public class City implements Serializable {
     private String city;
     private String province;
 

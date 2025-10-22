@@ -1,6 +1,7 @@
 package com.example.androiduitesting;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ShowActivity showActivity = new ShowActivity(dataList.get(i));
+                ShowActivity showActivity = ShowActivity.newInstance(cityAdapter.getItem(i));
 
             }
         });
