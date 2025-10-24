@@ -32,7 +32,7 @@ public class MainActivityTest {
 // Click on Add City button
         onView(withId(R.id.button_add)).perform(click());
 // Type "Edmonton" in the editText
-        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonto n"));
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton"));
 // Click on Confirm
                 onView(withId(R.id.button_confirm)).perform(click());
 // Check if text "Edmonton" is matched with any of the textdisplayed on the screen
@@ -57,7 +57,7 @@ public class MainActivityTest {
     public void testListView(){
 // Add a city
         onView(withId(R.id.button_add)).perform(click());
-        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonto n"));
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton"));
                 onView(withId(R.id.button_confirm)).perform(click());
 // Check if in the Adapter view (given id of that adapter view),there is a data
 // (which is an instance of String) located at position zero.
@@ -66,4 +66,54 @@ public class MainActivityTest {
         onData(is(instanceOf(String.class))).inAdapterView(withId(R.id.city_list
         )).atPosition(0).check(matches((withText("Edmonton"))));
     }
+
+    @Test
+    public void testActivitySwitch(){
+        // Click on Add City button
+        onView(withId(R.id.button_add)).perform(click());
+// Type "Edmonton" in the editText
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton"));
+// Click on Confirm
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onView(withId(R.id.city_list)).perform(click());
+
+        onView(withId(R.id.city_list)).check(doesNotExist());
+
+    }
+
+    @Test
+    public void testNewActivityCityName(){
+        // Click on Add City button
+        onView(withId(R.id.button_add)).perform(click());
+// Type "Edmonton" in the editText
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton"));
+// Click on Confirm
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onView(withId(R.id.city_list)).perform(click());
+
+        onView(withText("Edmonton")).check(matches(isDisplayed()));
+
+    }
+
+    @Test
+    public void testBackButton(){
+        // Click on Add City button
+        onView(withId(R.id.button_add)).perform(click());
+// Type "Edmonton" in the editText
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton"));
+// Click on Confirm
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onView(withId(R.id.city_list)).perform(click());
+
+        onView(withId(R.id.backButton)).perform(click());
+
+        onView(withId(R.id.backButton)).check(doesNotExist());
+
+    }
+
+
+
 }
